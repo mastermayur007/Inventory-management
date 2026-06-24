@@ -1,0 +1,16 @@
+{
+    "name": "lenovo/itam",
+    "description": "Enterprise IT Asset Management System",
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mayur",
+            "email": "mastermayur007@gmail.com"
+        }
+    ],
+    "require": {}
+}
