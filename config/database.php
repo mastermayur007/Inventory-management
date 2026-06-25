@@ -1,18 +1,19 @@
+
 <?php
 
 class Database
 {
     private string $host = "localhost";
     private string $dbname = "itam";
-    private string $username = "root";
-    private string $password = "";
+    private string $username = "mayur";
+    private string $password = "YOUR_DATABASE_PASSWORD";
 
     public function connect()
     {
         try
         {
             $pdo = new PDO(
-                "mysql:host={$this->host};dbname={$this->dbname}",
+                "mysql:host={$this->host};dbname={$this->dbname};charset=utf8mb4",
                 $this->username,
                 $this->password
             );
@@ -20,6 +21,11 @@ class Database
             $pdo->setAttribute(
                 PDO::ATTR_ERRMODE,
                 PDO::ERRMODE_EXCEPTION
+            );
+
+            $pdo->setAttribute(
+                PDO::ATTR_DEFAULT_FETCH_MODE,
+                PDO::FETCH_ASSOC
             );
 
             return $pdo;
