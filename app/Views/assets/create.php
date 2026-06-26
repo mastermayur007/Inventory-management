@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
         ]);
 
-        header('Location: ?page=assets');
+        header('Location: ?page=assets&success=1');
         exit;
     }
 }
