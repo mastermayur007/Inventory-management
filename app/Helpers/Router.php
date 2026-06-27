@@ -120,9 +120,25 @@ case 'asset-delete':
             | Assignments
             |--------------------------------------------------------------------------
             */
-            case 'assignments':
-                require __DIR__ . '/../Views/assignments/index.php';
-                break;
+            case 'asset-assignments':
+    require_once __DIR__ . '/../Views/asset_assignments/index.php';
+    break;
+
+case 'asset-assignment-create':
+    require_once __DIR__ . '/../Views/asset_assignments/create.php';
+    break;
+
+case 'asset-assignment-show':
+    require_once __DIR__ . '/../Views/asset_assignments/show.php';
+    break;
+
+case 'asset-assignment-edit':
+    require_once __DIR__ . '/../Views/asset_assignments/edit.php';
+    break;
+
+case 'asset-assignment-return':
+    require_once __DIR__ . '/../Views/asset_assignments/return.php';
+    break;
 
             /*
             |--------------------------------------------------------------------------
