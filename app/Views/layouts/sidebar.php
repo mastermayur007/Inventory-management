@@ -63,7 +63,7 @@
 
         <li class="p-3 hover:bg-slate-700 transition duration-200">
 
-            <a href="?page=assignments" class="block">
+            <a href="?page=asset-assignments" class="block">
 
                 📋 Asset Assignments
 

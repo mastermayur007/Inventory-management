@@ -139,6 +139,45 @@ case 'asset-assignment-edit':
 case 'asset-assignment-return':
     require_once __DIR__ . '/../Views/asset_assignments/return.php';
     break;
+case 'asset-assignment-store':
+
+    $controller = new \App\Controllers\AssetAssignmentController();
+
+    $controller->store();
+
+    break;
+
+case 'asset-assignment-update':
+
+    $controller = new \App\Controllers\AssetAssignmentController();
+
+    $controller->update($_GET['id'], $_POST);
+
+    break;
+
+case 'asset-assignment-return-save':
+
+    $controller = new \App\Controllers\AssetAssignmentController();
+
+    $controller->returnAsset($_GET['id'], $_POST);
+
+    break;
+
+case 'asset-assignment-delete':
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $controller = new \App\Controllers\AssetAssignmentController();
+
+        $controller->delete($_GET['id']);
+
+    } else {
+
+        require_once __DIR__ . '/../Views/asset_assignments/delete.php';
+
+    }
+
+    break;   
 
             /*
             |--------------------------------------------------------------------------

@@ -69,11 +69,13 @@ content="width=device-width, initial-scale=1.0">
 
 <body class="bg-gray-100">
 
-<div class="flex">
+<div class="flex min-h-screen">
 
-<?php require_once "../layouts/sidebar.php"; ?>
+<?php require_once __DIR__ . "/../layouts/sidebar.php"; ?>
 
-<div class="flex-1 p-8">
+<div class="flex-1 ml-64">
+
+<div class="max-w-7xl mx-auto p-8">
 
 <div class="bg-white rounded-lg shadow-lg">
 
@@ -478,6 +480,9 @@ Print
 
 </div>
 
+</div> <!-- max-w-7xl -->
+</div> <!-- flex-1 -->
+</div> <!-- flex -->
 </body>
 
 </html>

@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require_once __DIR__ . "/../../../config/database.php";
 
 $db = (new Database())->connect();
@@ -62,11 +65,15 @@ content="width=device-width, initial-scale=1.0">
 
 <body class="bg-gray-100">
 
-<div class="flex">
+<body class="bg-gray-100">
 
-<?php require_once "../layouts/sidebar.php"; ?>
+<div class="flex min-h-screen">
 
-<div class="flex-1 p-8">
+<?php require_once __DIR__ . "/../layouts/sidebar.php"; ?>
+
+<div class="flex-1 ml-64">
+
+<div class="max-w-6xl mx-auto p-8">
 
 <div class="bg-white rounded-lg shadow-lg">
 
@@ -292,6 +299,13 @@ Return Asset
 </div>
 
 </div>
+</div> <!-- max-w-6xl -->
+
+</div> <!-- flex-1 -->
+
+</div> <!-- flex -->
+
+</body>
 
 </body>
 

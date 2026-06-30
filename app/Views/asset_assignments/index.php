@@ -7,6 +7,7 @@ $db = (new Database())->connect();
 
 $sql = "
 SELECT
+
     aa.*,
 
     a.asset_tag,
@@ -20,21 +21,22 @@ SELECT
 FROM asset_assignments aa
 
 INNER JOIN assets a
-ON aa.asset_id=a.id
+ON aa.asset_id = a.id
 
 INNER JOIN employees e
-ON aa.employee_id=e.id
+ON aa.employee_id = e.id
 
 ORDER BY aa.id DESC
 ";
 
-$assignments=$db
+$assignments = $db
     ->query($sql)
     ->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -45,7 +47,11 @@ $assignments=$db
 name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Asset Assignments</title>
+<title>
+
+Asset Assignments
+
+</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -53,27 +59,31 @@ content="width=device-width, initial-scale=1.0">
 
 <body class="bg-gray-100">
 
-<div class="flex">
+<div class="flex min-h-screen">
 
-<?php require_once "../layouts/sidebar.php"; ?>
+<?php require_once __DIR__ . "/../layouts/sidebar.php"; ?>
 
-<div class="flex-1 p-8">
+<div class="flex-1 ml-64">
 
-<div class="bg-white rounded-lg shadow">
+<div class="max-w-7xl mx-auto px-8 py-8">
 
-<div class="flex justify-between items-center p-6 border-b">
+<div class="bg-white rounded-xl shadow-lg overflow-hidden">
+
+<!-- Header -->
+
+<div class="flex items-center justify-between px-8 py-6 border-b bg-gray-50">
 
 <div>
 
-<h1 class="text-2xl font-bold">
+<h1 class="text-3xl font-bold text-gray-800">
 
 Asset Assignments
 
 </h1>
 
-<p class="text-gray-500">
+<p class="text-gray-500 mt-1">
 
-Manage Assigned Company Assets
+Manage Company Asset Assignments
 
 </p>
 
@@ -81,20 +91,22 @@ Manage Assigned Company Assets
 
 <a
 href="?page=asset-assignment-create"
-class="bg-blue-600 text-white px-5 py-3 rounded-lg hover:bg-blue-700">
+class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow font-medium">
 
-Assign Asset
++ Assign Asset
 
 </a>
 
 </div>
+
+<!-- Alerts -->
 
 <div class="p-6">
 
 <?php if(isset($_SESSION['success'])): ?>
 
 <div
-class="mb-4 p-4 rounded bg-green-100 text-green-700">
+class="mb-5 rounded-lg bg-green-100 border border-green-300 text-green-700 px-5 py-4">
 
 <?= $_SESSION['success']; ?>
 
@@ -107,7 +119,7 @@ class="mb-4 p-4 rounded bg-green-100 text-green-700">
 <?php if(isset($_SESSION['error'])): ?>
 
 <div
-class="mb-4 p-4 rounded bg-red-100 text-red-700">
+class="mb-5 rounded-lg bg-red-100 border border-red-300 text-red-700 px-5 py-4">
 
 <?= $_SESSION['error']; ?>
 
@@ -117,54 +129,60 @@ class="mb-4 p-4 rounded bg-red-100 text-red-700">
 
 <?php endif; ?>
 
+<!-- Table -->
+
 <div class="overflow-x-auto">
 
 <table
-class="min-w-full border border-gray-300">
+class="min-w-full border border-gray-200">
 
-<thead class="bg-gray-200">
+<thead class="bg-gray-100">
 
 <tr>
 
-<th class="px-4 py-3 border">#</th>
+<th class="px-6 py-4 border text-left">
 
-<th class="px-4 py-3 border">
+#
+
+</th>
+
+<th class="px-6 py-4 border text-left">
 
 Employee
 
 </th>
 
-<th class="px-4 py-3 border">
+<th class="px-6 py-4 border text-left">
 
 Asset
 
 </th>
 
-<th class="px-4 py-3 border">
+<th class="px-6 py-4 border text-left">
 
 Asset Tag
 
 </th>
 
-<th class="px-4 py-3 border">
+<th class="px-6 py-4 border">
 
 Assigned Date
 
 </th>
 
-<th class="px-4 py-3 border">
+<th class="px-6 py-4 border">
 
 Expected Return
 
 </th>
 
-<th class="px-4 py-3 border">
+<th class="px-6 py-4 border">
 
 Status
 
 </th>
 
-<th class="px-4 py-3 border">
+<th class="px-6 py-4 border">
 
 Actions
 
@@ -176,13 +194,18 @@ Actions
 
 <tbody>
 
-<?php if(empty($assignments)): ?>
+<?php
+
+if(empty($assignments))
+{
+
+?>
 
 <tr>
 
 <td
 colspan="8"
-class="text-center p-5 text-gray-500">
+class="text-center py-12 text-gray-500">
 
 No Asset Assignments Found
 
@@ -190,105 +213,120 @@ No Asset Assignments Found
 
 </tr>
 
-<?php endif; ?>
-
 <?php
 
-$i=1;
+}
+
+$i = 1;
 
 foreach($assignments as $row):
 
 ?>
 
-<tr
-class="hover:bg-gray-50">
+<tr class="hover:bg-gray-50">
 
-<td class="border px-4 py-3">
+<td class="border px-5 py-4">
 
 <?= $i++; ?>
 
 </td>
 
-<td class="border px-4 py-3">
+<td class="border px-5 py-4">
 
-<strong>
+<div class="font-semibold">
 
-<?= $row['employee_name']; ?>
+<?= htmlspecialchars($row['employee_name']); ?>
 
-</strong>
+</div>
 
-<br>
+<div class="text-sm text-gray-500">
 
-<span class="text-gray-500">
+<?= htmlspecialchars($row['employee_code']); ?>
 
-<?= $row['employee_code']; ?>
-
-</span>
+</div>
 
 </td>
 
-<td class="border px-4 py-3">
+<td class="border px-5 py-4">
 
-<?= $row['asset_name']; ?>
+<div class="font-semibold">
 
-<br>
+<?= htmlspecialchars($row['asset_name']); ?>
 
-<span class="text-gray-500">
+</div>
 
-<?= $row['brand']; ?>
+<div class="text-sm text-gray-500">
 
-<?= $row['model']; ?>
+<?= htmlspecialchars($row['brand']); ?>
 
-</span>
+<?= htmlspecialchars($row['model']); ?>
 
-</td>
-
-<td class="border px-4 py-3">
-
-<?= $row['asset_tag']; ?>
+</div>
 
 </td>
 
-<td class="border px-4 py-3">
+<td class="border px-5 py-4">
 
-<?= $row['assigned_date']; ?>
+<?= htmlspecialchars($row['asset_tag']); ?>
+
+</td>
+<td class="border px-5 py-4 text-center">
+
+<?= date('d M Y', strtotime($row['assigned_date'])); ?>
 
 </td>
 
-<td class="border px-4 py-3">
-
-<?= $row['expected_return_date']; ?>
-
-</td>
-
-<td class="border px-4 py-3">
+<td class="border px-5 py-4 text-center">
 
 <?php
 
-if($row['status']=="Assigned")
+if(!empty($row['expected_return_date']))
 {
-
-echo '<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Assigned</span>';
-
+    echo date(
+        'd M Y',
+        strtotime($row['expected_return_date'])
+    );
 }
 else
 {
-
-echo '<span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">Returned</span>';
-
+    echo "<span class='text-gray-400'>N/A</span>";
 }
 
 ?>
 
 </td>
 
-<td class="border px-4 py-3">
+<td class="border px-5 py-4 text-center">
 
-<div class="flex gap-2">
+<?php if($row['status']=="Assigned"): ?>
+
+<span
+class="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700">
+
+Assigned
+
+</span>
+
+<?php else: ?>
+
+<span
+class="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700">
+
+Returned
+
+</span>
+
+<?php endif; ?>
+
+</td>
+
+<td class="border px-5 py-4">
+
+<div class="flex justify-center gap-2">
 
 <a
 href="?page=asset-assignment-show&id=<?= $row['id']; ?>"
-class="bg-indigo-600 text-white px-3 py-2 rounded">
+class="rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700">
 
 View
 
@@ -296,7 +334,7 @@ View
 
 <a
 href="?page=asset-assignment-edit&id=<?= $row['id']; ?>"
-class="bg-yellow-500 text-white px-3 py-2 rounded">
+class="rounded-lg bg-yellow-500 px-3 py-2 text-sm font-medium text-white hover:bg-yellow-600">
 
 Edit
 
@@ -304,7 +342,7 @@ Edit
 
 <a
 href="?page=asset-assignment-return&id=<?= $row['id']; ?>"
-class="bg-green-600 text-white px-3 py-2 rounded">
+class="rounded-lg bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700">
 
 Return
 
@@ -312,8 +350,8 @@ Return
 
 <a
 href="?page=asset-assignment-delete&id=<?= $row['id']; ?>"
-onclick="return confirm('Delete this assignment?')"
-class="bg-red-600 text-white px-3 py-2 rounded">
+onclick="return confirm('Are you sure you want to delete this assignment?')"
+class="rounded-lg bg-red-600 px-3 py-2 text-sm font-medium text-white hover:bg-red-700">
 
 Delete
 
@@ -326,10 +364,43 @@ Delete
 </tr>
 
 <?php endforeach; ?>
-
 </tbody>
 
 </table>
+
+</div>
+
+<!-- Summary -->
+
+<div class="flex items-center justify-between mt-6 pt-4 border-t">
+
+<div class="text-sm text-gray-500">
+
+Showing
+
+<strong>
+
+<?= count($assignments); ?>
+
+</strong>
+
+assignment(s)
+
+</div>
+
+<div>
+
+<a
+href="?page=dashboard"
+class="inline-flex items-center rounded-lg bg-gray-700 px-5 py-2 text-white hover:bg-gray-800 transition">
+
+← Back to Dashboard
+
+</a>
+
+</div>
+
+</div>
 
 </div>
 
