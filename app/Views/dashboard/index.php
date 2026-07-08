@@ -33,6 +33,52 @@ require __DIR__ . '/../layouts/navbar.php';
         </div>
 
     </div>
+    <!-- Search Card -->
+
+<div class="bg-white rounded-xl shadow p-6 mb-8">
+
+    <h2 class="text-xl font-bold mb-4">
+
+        🔍 Global Asset Search
+
+    </h2>
+
+    <form
+        method="GET"
+        action="">
+
+        <input
+            type="hidden"
+            name="page"
+            value="asset-search">
+
+        <div class="flex gap-3">
+
+            <input
+
+                type="text"
+
+                name="search"
+
+                required
+
+                placeholder="Search Asset ID (INL000001), Asset Tag or Serial Number"
+
+                class="flex-1 border border-gray-300 rounded-lg px-5 py-3 focus:ring-2 focus:ring-blue-500">
+
+            <button
+
+                class="bg-blue-600 hover:bg-blue-700 text-white px-8 rounded-lg">
+
+                Search
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
 
     <!-- Statistics Cards -->
 

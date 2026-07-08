@@ -17,6 +17,9 @@ class Router
                 require __DIR__ . '/../Views/dashboard/index.php';
                 break;
 
+            
+
+    break;    
             /*
             |--------------------------------------------------------------------------
             | Authentication
@@ -114,6 +117,13 @@ case 'asset-edit':
 case 'asset-delete':
     require __DIR__ . '/../Views/assets/delete.php';
     break;
+case 'asset-search':
+    require_once __DIR__ . '/../Views/assets/search.php';
+    break;
+
+case 'asset-show':
+    require_once __DIR__ . '/../Views/assets/show.php';
+    break;    
 
             /*
             |--------------------------------------------------------------------------
@@ -179,6 +189,119 @@ case 'asset-assignment-delete':
 
     break;   
 
+            /*
+            |--------------------------------------------------------------------------
+            | setting
+            |--------------------------------------------------------------------------
+            */
+            case 'settings':
+    require_once __DIR__.'/../Views/settings/index.php';
+    break;
+
+case 'settings-company':
+    require_once __DIR__.'/../Views/settings/company.php';
+    break;
+
+case 'settings-profile':
+    require_once __DIR__.'/../Views/settings/profile.php';
+    break;
+
+case 'settings-categories':
+    require_once __DIR__.'/../Views/settings/categories.php';
+    break;
+
+case 'settings-locations':
+    require_once __DIR__.'/../Views/settings/locations.php';
+    break;
+
+case 'settings-manufacturers':
+    require_once __DIR__.'/../Views/settings/manufacturers.php';
+    break;
+
+case 'settings-status':
+    require_once __DIR__.'/../Views/settings/asset_status.php';
+    break;
+
+case 'settings-email':
+    require_once __DIR__.'/../Views/settings/email.php';
+    break;
+
+case 'settings-backup':
+    require_once __DIR__.'/../Views/settings/backup.php';
+    break;
+
+case 'settings-security':
+    require_once __DIR__.'/../Views/settings/security.php';
+    break;
+case 'settings-category-edit':
+    require_once __DIR__ . '/../Views/settings/category_edit.php';
+    break;
+
+case 'settings-category-delete':
+    require_once __DIR__ . '/../Views/settings/category_delete.php';
+    break;    
+case 'settings-status':
+
+require_once __DIR__.'/../Views/settings/asset_status.php';
+
+break;
+
+case 'asset-status-edit':
+
+require_once __DIR__.'/../Views/settings/asset_status_edit.php';
+
+break;
+
+case 'asset-status-delete':
+
+require_once __DIR__.'/../Views/settings/asset_status_delete.php';
+
+break;    
+            /*
+            |--------------------------------------------------------------------------
+            | Reports
+            |--------------------------------------------------------------------------
+            */
+            case 'reports':
+
+require_once __DIR__ . '/../Views/reports/index.php';
+
+break;
+
+case 'report-assets':
+
+require_once __DIR__ . '/../Views/reports/assets.php';
+
+break;
+
+case 'report-assignments':
+
+require_once __DIR__ . '/../Views/reports/assignment.php';
+
+break;
+
+case 'report-employees':
+
+require_once __DIR__ . '/../Views/reports/employees.php';
+
+break;
+
+case 'report-vendors':
+
+require_once __DIR__ . '/../Views/reports/vendors.php';
+
+break;
+
+case 'report-warranty':
+
+require_once __DIR__ . '/../Views/reports/warranty.php';
+
+break;
+case 'report-purchase':
+
+require_once __DIR__ . '/../Views/reports/purchase.php';
+
+break;
             /*
             |--------------------------------------------------------------------------
             | Handovers

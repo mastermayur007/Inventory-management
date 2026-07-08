@@ -96,6 +96,21 @@ require __DIR__ . '/../layouts/navbar.php';
         </h1>
 
         <form method="POST">
+            <div class="mb-4">
+
+    <label class="block mb-2 font-semibold">
+
+        Asset ID
+
+    </label>
+
+    <input
+        type="text"
+        value="Auto Generated (e.g. INL000001)"
+        readonly
+        class="border p-2 rounded w-full bg-gray-100 text-gray-600">
+
+</div>
 
             <div class="mb-4">
 
